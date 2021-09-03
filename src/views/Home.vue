@@ -1,18 +1,20 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="splash_screen">
+    <img src="../assets/splash-pikachu.png" alt="PokeFav" />
+    <h1>Welcome to Pokédex</h1>
+    <p>
+      The digital encyclopedia created by Professor Oak is an invaluable tool to
+      Trainers in the Pokémon world.
+    </p>
+    <router-link :to="{ name: 'PokeList' }">Get Started</router-link>
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
   name: "Home",
-  components: {
-    HelloWorld,
-  },
 };
 </script>
+
+<style>
+
+</style>
