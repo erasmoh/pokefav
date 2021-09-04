@@ -32,6 +32,7 @@
     >
       Remove From list
     </button>
+    <button @click="copyInfo">Share info</button>
   </div>
 </template>
 <script>
@@ -43,12 +44,15 @@ export default {
     return {
       pokemon: null,
       pokeFavs: this.$store.state.pokeFavs,
+      pokeInfo: {},
     };
   },
   created() {
     PokeService.getPokemon(this.name)
       .then((response) => {
         this.pokemon = response.data;
+        this.pokeInfo = [`${this.pokemon.name}, ${this.pokemon.weight}`];
+        console.log(this.pokeInfo[0]);
       })
       .catch((error) => {
         console.log(error);
@@ -66,6 +70,9 @@ export default {
         (pokemon) => pokemon.name === pokemon.name
       );
       this.pokeFavs.splice(pokeFav, 1);
+    },
+    copyInfo() {
+      // copy to clipboard missing functionality
     },
   },
 };
