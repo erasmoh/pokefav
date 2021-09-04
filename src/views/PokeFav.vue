@@ -2,9 +2,11 @@
   <div class="pokemons">
     <SearchBar />
     <h1>Favs</h1>
-    <div v-for="pokemon in pokemons" :key="pokemon.index">
-      <PokeCard :name="pokemon.name" />
-    </div>
+    <PokeCard
+      v-for="pokemon in pokemons"
+      :pokemon="pokemon"
+      :key="pokemon.index"
+    />
     <Menu />
   </div>
 </template>

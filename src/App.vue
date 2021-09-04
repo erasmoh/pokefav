@@ -1,10 +1,14 @@
 <template>
+  <!-- <div id="nav">
+    <router-link to="/">Home</router-link> |
+    <router-link to="/pokefav">Favs</router-link> |
+  </div> -->
   <router-view />
 </template>
 
 <style lang="scss">
 body {
-  background: #f9f9f9;
+    background: #F9F9F9;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -13,7 +17,6 @@ body {
   text-align: center;
   color: #2c3e50;
 }
-
 #nav {
   padding: 30px;
 

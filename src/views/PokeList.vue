@@ -2,9 +2,17 @@
   <div class="pokemons">
     <SearchBar />
     <h1>Poke List</h1>
-    <!-- <div v-for="pokemon in pokemons" :key="pokemon.index"> -->
-      <PokeCard :pokemon="pokemon" v-for="pokemon in pokemons" :key="pokemon.index" />
-    <!-- </div> -->
+    <PokeModal
+      v-if="showModal"
+      :name="actualPokemon"
+      @click="toggleModal"
+    />
+    <PokeCard
+      v-for="pokemon in pokemons"
+      :pokemon="pokemon"
+      :key="pokemon.index"
+      @click="pokeDetail(pokemon.name)"
+    />
     <Menu />
   </div>
 </template>
@@ -13,17 +21,20 @@ import PokeService from "@/services/PokeService.js";
 import SearchBar from "@/components/SearchBar";
 import PokeCard from "@/components/PokeCard";
 import Menu from "@/components/Menu";
-// import PokeModal from "@/components/PokeModal";
+import PokeModal from "@/components/PokeModal";
 export default {
   name: "PokeList",
   components: {
     SearchBar,
     PokeCard,
     Menu,
+    PokeModal,
   },
   data() {
     return {
       pokemons: null,
+      showModal: false,
+      actualPokemon: null,
     };
   },
   created() {
@@ -35,6 +46,15 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+  },
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal;
+    },
+    pokeDetail(pokemon) {
+      this.actualPokemon = pokemon;
+      this.toggleModal();
+    },
   },
 };
 </script>
