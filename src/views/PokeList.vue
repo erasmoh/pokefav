@@ -1,14 +1,18 @@
 <template>
   <div class="pokemons">
-    <SearchBar />
-    <h1>Poke List</h1>
+    <input type="text" placeholder="Search pokemon" v-model="search" />
     <PokeModal
       v-if="showModal"
       :name="actualPokemon"
-      @click="toggleModal"
+      @toggle-modal="toggleModal"
     />
+    <div v-if="search != '' && pokeFiltered.length === 0">
+      <h1>Uh-oh!</h1>
+      <p>You look lost on your journey!</p>
+      <button @click="clearSearch">Go Back Home</button>
+    </div>
     <PokeCard
-      v-for="pokemon in pokemons"
+      v-for="pokemon in pokeFiltered"
       :pokemon="pokemon"
       :key="pokemon.index"
       @click="pokeDetail(pokemon.name)"
@@ -18,14 +22,12 @@
 </template>
 <script>
 import PokeService from "@/services/PokeService.js";
-import SearchBar from "@/components/SearchBar";
 import PokeCard from "@/components/PokeCard";
 import Menu from "@/components/Menu";
 import PokeModal from "@/components/PokeModal";
 export default {
   name: "PokeList",
   components: {
-    SearchBar,
     PokeCard,
     Menu,
     PokeModal,
@@ -35,17 +37,30 @@ export default {
       pokemons: null,
       showModal: false,
       actualPokemon: null,
+      search: "",
+      pokeFavs: [],
     };
   },
   created() {
+    console.log('PokeFavs: ' + this.$store.state.pokeFavs);
     PokeService.getPokemons()
       .then((response) => {
         this.pokemons = response.data.results;
-        // console.log(this.pokemons);
       })
       .catch((error) => {
         console.log(error);
       });
+  },
+  computed: {
+    pokeFiltered() {
+      if (this.search === "") {
+        return this.pokemons;
+      } else {
+        return this.pokemons.filter((pokemon) => {
+          return pokemon.name.toLowerCase().includes(this.search.toLowerCase());
+        });
+      }
+    },
   },
   methods: {
     toggleModal() {
@@ -55,6 +70,13 @@ export default {
       this.actualPokemon = pokemon;
       this.toggleModal();
     },
+    clearSearch() {
+      this.search = "";
+    },
+    // addPokeFav(pokemon) {
+    //   this.pokeFavs.push(pokemon);
+    //   console.log(this.pokeFavs);
+    // },
   },
 };
 </script>
