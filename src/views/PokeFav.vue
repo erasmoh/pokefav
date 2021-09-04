@@ -34,7 +34,6 @@ export default {
   },
   data() {
     return {
-      pokemons: null,
       showModal: false,
       actualPokemon: null,
       search: "",
@@ -42,7 +41,7 @@ export default {
     };
   },
   created() {
-    console.log('PokeFavs: ' + this.$store.state.pokeFavs);
+    console.log('PokeFavs: ' + this.pokeFavs);
     PokeService.getPokemons()
       .then((response) => {
         this.pokemons = response.data.results;

@@ -18,7 +18,20 @@
       </div>
     </div>
     <button>Share to my friends</button>
-    <button @click="addPokemon(pokemon)">Add poke fav</button>
+    <!-- This one only shoud be displayed if not on fav list -->
+    <button
+      v-if="!pokeFavs.find((p) => p.name === pokemon.name)"
+      @click="addPokemon(pokemon)"
+    >
+      Add To List
+    </button>
+    <!-- This one only shoud be displayed if it's fav list -->
+    <button
+      v-if="pokeFavs.find((p) => p.name === pokemon.name)"
+      @click="removePokemon(pokemon)"
+    >
+      Remove From list
+    </button>
   </div>
 </template>
 <script>
@@ -29,13 +42,13 @@ export default {
   data() {
     return {
       pokemon: null,
+      pokeFavs: this.$store.state.pokeFavs,
     };
   },
   created() {
     PokeService.getPokemon(this.name)
       .then((response) => {
         this.pokemon = response.data;
-        // console.log(this.pokemon);
       })
       .catch((error) => {
         console.log(error);
@@ -46,17 +59,14 @@ export default {
       this.$emit("toggleModal");
     },
     addPokemon(pokemon) {
-      this.$store.state.pokeFavs.push(pokemon);
-      console.log("Pokemon: " + pokemon + " agregado a favoritos");
-      console.log(this.$store.state.pokeFavs);
+      this.pokeFavs.push(pokemon);
     },
-    // addPokeFav(pokemon) {
-    //   this.$emit("addPokeFav", pokemon);
-    //   console.log("Pokemon: " + pokemon + " agregado a favoritos");
-    // },
-    // addPoke(pokemon) {
-    //   store.commit('')
-    // }
+    removePokemon() {
+      let pokeFav = this.pokeFavs.indexOf(
+        (pokemon) => pokemon.name === pokemon.name
+      );
+      this.pokeFavs.splice(pokeFav, 1);
+    },
   },
 };
 </script>
