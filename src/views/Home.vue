@@ -1,6 +1,6 @@
 <template>
   <div class="splash_screen">
-    <img src="../assets/splash-pikachu.png" alt="PokeFav" />
+    <img src="../assets/splash-pikachu.svg" alt="PokeFav" />
     <h1>Welcome to Pokédex</h1>
     <p>
       The digital encyclopedia created by Professor Oak is an invaluable tool to

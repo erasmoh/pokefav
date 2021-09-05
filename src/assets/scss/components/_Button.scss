@@ -6,11 +6,12 @@
   border-radius: 60px;
   border: 0;
   font-weight: bold;
+  font-size: 18px;
   &:active {
     background-color: $secondary-red;
   }
   &.disabled {
     background-color: $main-gray;
-    pointer-events: none;
+    // pointer-events: none;
   }
 }

@@ -15,7 +15,7 @@
       v-for="pokemon in pokeFiltered"
       :pokemon="pokemon"
       :key="pokemon.index"
-      @click="pokeDetail(pokemon.name)"
+      @poke-detail="pokeDetail(pokemon.name)"
     />
     <Menu active="home" />
   </div>

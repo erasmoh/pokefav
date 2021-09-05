@@ -1,27 +1,25 @@
 <template>
   <div class="pokecard">
-    <div class="pokecard-name">
+    <div class="pokecard-name" @click="showPokemon(pokemon.name)">
       {{ pokemon.name }}
     </div>
-    <div class="pokecard-star">
-      <img v-if="pokeFavs.find((p) => p.name === pokemon.name)" :src="favImg" />
-      <img v-else :src="noFavImg" />
-    </div>
+    <Star :pokemon="pokemon" />
   </div>
 </template>
 
 <script>
-import Fav from "../assets/Fav.svg";
-import noFav from "../assets/noFav.svg";
+import Star from "./Star.vue";
 export default {
   name: "PokeCard",
   props: ["pokemon"],
-  data() {
-    return {
-      pokeFavs: this.$store.state.pokeFavs,
-      favImg: Fav,
-      noFavImg: noFav,
-    };
+  emits: ["pokeDetail"],
+  components: {
+    Star,
+  },
+  methods: {
+    showPokemon(pokemon) {
+      this.$emit("pokeDetail", pokemon);
+    },
   },
 };
 </script>
