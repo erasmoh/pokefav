@@ -54,6 +54,7 @@ export default {
         this.pokeInfo = [`${this.pokemon.name}, ${this.pokemon.weight}`];
       })
       .catch((error) => {
+        // eslint-disable-next-line
         console.log(error);
       });
   },
