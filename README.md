@@ -6,6 +6,8 @@
 
 First view is a static splash screen, then you will access to the full pokemon list, where you have the option to click on the name of each Pokemon to see the modal of the full description or add it to your favorite list by clicking the star for each one.
 
+You can preview the app in <a href="https://pokedex-erasmoh.netlify.app/" target="_blank">netlify.</a>
+
 ### Tools used: 
 - Vuex, Vue-Router, Sass, Axios.
 - Independent Sass files by component: To make it easier to edit and scale. 
