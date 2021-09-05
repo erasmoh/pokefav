@@ -52,7 +52,6 @@ export default {
       .then((response) => {
         this.pokemon = response.data;
         this.pokeInfo = [`${this.pokemon.name}, ${this.pokemon.weight}`];
-        console.log(this.pokeInfo[0]);
       })
       .catch((error) => {
         console.log(error);

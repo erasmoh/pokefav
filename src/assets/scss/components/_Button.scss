@@ -1,0 +1,16 @@
+.button {
+  background-color: $primary-red;
+  color: $white;
+  text-decoration: none;
+  padding: 11px 20px;
+  border-radius: 60px;
+  border: 0;
+  font-weight: bold;
+  &:active {
+    background-color: $secondary-red;
+  }
+  &.disabled {
+    background-color: $main-gray;
+    pointer-events: none;
+  }
+}

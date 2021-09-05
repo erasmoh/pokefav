@@ -1,6 +1,6 @@
 <template>
   <div class="pokemons">
-    <input type="text" placeholder="Search pokemon" v-model="search" />
+    <input type="text" placeholder="Search" v-model="search" />
     <PokeModal
       v-if="showModal"
       :name="actualPokemon"
@@ -9,7 +9,7 @@
     <div v-if="search != '' && pokeFiltered.length === 0">
       <h1>Uh-oh!</h1>
       <p>You look lost on your journey!</p>
-      <button @click="clearSearch">Go Back Home</button>
+      <button class="button" @click="clearSearch">Go Back Home</button>
     </div>
     <PokeCard
       v-for="pokemon in pokeFiltered"
@@ -17,7 +17,7 @@
       :key="pokemon.index"
       @click="pokeDetail(pokemon.name)"
     />
-    <Menu />
+    <Menu active="home" />
   </div>
 </template>
 <script>
@@ -42,7 +42,6 @@ export default {
     };
   },
   created() {
-    console.log('PokeFavs: ' + this.$store.state.pokeFavs);
     PokeService.getPokemons()
       .then((response) => {
         this.pokemons = response.data.results;
@@ -73,10 +72,6 @@ export default {
     clearSearch() {
       this.search = "";
     },
-    // addPokeFav(pokemon) {
-    //   this.pokeFavs.push(pokemon);
-    //   console.log(this.pokeFavs);
-    // },
   },
 };
 </script>

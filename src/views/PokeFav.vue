@@ -1,6 +1,6 @@
 <template>
   <div class="pokemons">
-    <input type="text" placeholder="Search pokemon" v-model="search" />
+    <input type="text" placeholder="Search" v-model="search" />
     <PokeModal
       v-if="showModal"
       :name="actualPokemon"
@@ -9,7 +9,7 @@
     <div v-if="pokeFavs.length === 0">
       <h1>Uh-oh!</h1>
       <p>You don't have any fav!</p>
-      <!-- <button @click="clearSearch">Add some</button> -->
+      <button class="button" @click="this.$router.push('pokelist')">Add some</button>
     </div>
     <PokeCard
       v-for="pokemon in pokeFavs"
@@ -17,7 +17,7 @@
       :key="pokemon.index"
       @click="pokeDetail(pokemon.name)"
     />
-    <Menu />
+    <Menu active="pokefav" />
   </div>
 </template>
 <script>
@@ -41,7 +41,6 @@ export default {
     };
   },
   created() {
-    console.log('PokeFavs: ' + this.pokeFavs);
     PokeService.getPokemons()
       .then((response) => {
         this.pokemons = response.data.results;

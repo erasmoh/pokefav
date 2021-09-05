@@ -1,0 +1,27 @@
+.pokecard {
+  width: 80vw;
+  padding: 10px;
+  margin: 5px auto;
+  border-radius: 5px;
+  background-color: white;
+  text-transform: capitalize;
+  font-size: 22px;
+  line-height: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &-star {
+    background-color: $light-gray;
+    border-radius: 50%;
+    padding: 4px;
+    height: 23px;
+    width: 23px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    img {
+        max-width: 90%;
+        height: auto;
+    }
+  }
+}

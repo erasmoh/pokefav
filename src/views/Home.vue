@@ -6,7 +6,7 @@
       The digital encyclopedia created by Professor Oak is an invaluable tool to
       Trainers in the Pokémon world.
     </p>
-    <router-link :to="{ name: 'PokeList' }">Get Started</router-link>
+    <button class="button" @click="$router.push('pokelist')">Get Started</button>
   </div>
 </template>
 <script>
@@ -14,7 +14,3 @@ export default {
   name: "Home",
 };
 </script>
-
-<style>
-
-</style>
