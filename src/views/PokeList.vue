@@ -38,7 +38,7 @@ export default {
       showModal: false,
       actualPokemon: null,
       search: "",
-      pokeFavs: [],
+      pokeFavs: this.$store.state.pokeFavs,
     };
   },
   created() {

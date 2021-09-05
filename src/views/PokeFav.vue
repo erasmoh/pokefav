@@ -6,16 +6,16 @@
       :name="actualPokemon"
       @toggle-modal="toggleModal"
     />
-    <div v-if="pokeFavs.length === 0">
+    <div v-if="search != '' && pokeFavsFiltered.length === 0">
       <h1>Uh-oh!</h1>
       <p>You don't have any fav!</p>
       <button class="button" @click="this.$router.push('pokelist')">Add some</button>
     </div>
     <PokeCard
-      v-for="pokemon in pokeFavs"
+      v-for="pokemon in pokeFavsFiltered"
       :pokemon="pokemon"
       :key="pokemon.index"
-      @click="pokeDetail(pokemon.name)"
+      @poke-detail="pokeDetail(pokemon.name)"
     />
     <Menu active="pokefav" />
   </div>
@@ -51,11 +51,11 @@ export default {
       });
   },
   computed: {
-    pokeFiltered() {
+    pokeFavsFiltered() {
       if (this.search === "") {
-        return this.pokemons;
+        return this.pokeFavs;
       } else {
-        return this.pokemons.filter((pokemon) => {
+        return this.pokeFavs.filter((pokemon) => {
           return pokemon.name.toLowerCase().includes(this.search.toLowerCase());
         });
       }
