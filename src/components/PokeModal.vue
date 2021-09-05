@@ -2,33 +2,34 @@
   <div class="pokemodal" v-if="pokemon">
     <div class="pokemodal-body">
       <div class="pokemodal-header">
-        <button @click="toggleModal">
-          <img src="" alt="" />
-          cerrar
-        </button>
+        <button @click="toggleModal" class="close"></button>
         <img
           :src="pokemon.sprites.other.dream_world.front_default"
           height="200"
         />
       </div>
-      <div class="pokemodal-name">Name: {{ pokemon.name }}</div>
-      <div class="pokemodal-weight">Weight: {{ pokemon.weight }}</div>
-      <div class="pokemodal-height">Height: {{ pokemon.height }}</div>
-      <div class="pokemodal-types">
-        Type:
-        <div
-          class="pokemodal-types__mini"
-          v-for="types in pokemon.types"
-          :key="types"
-        >
-          <div v-for="type in types" :key="type">
-            {{ type.name }}
-          </div>
+      <div class="pokemodal-info">
+        <div class="pokemodal-info__item">
+          <strong>Name:</strong> {{ pokemon.name }}
         </div>
-      </div>
-      <div class="pokemodal-btns">
-        <button class="button" @click="copyInfo">Share to my friends</button>
-        <Star :pokemon="pokemon" />
+        <div class="pokemodal-info__item">
+          <strong>Weight:</strong> {{ pokemon.weight }}
+        </div>
+        <div class="pokemodal-info__item">
+          <strong>Height:</strong> {{ pokemon.height }}
+        </div>
+        <div class="pokemodal-info__item">
+          <strong>Type:</strong>
+          <ul class="pokemodal-types">
+            <li v-for="(type, index) in pokemon.types" :key="index">
+              {{ type.type.name }}
+            </li>
+          </ul>
+        </div>
+        <div class="pokemodal-btns">
+          <button class="button" @click="copyInfo">Share to my friends</button>
+          <Star :pokemon="pokemon" />
+        </div>
       </div>
     </div>
   </div>
@@ -53,7 +54,6 @@ export default {
     PokeService.getPokemon(this.name)
       .then((response) => {
         this.pokemon = response.data;
-        // this.pokeInfo = [`${this.pokemon.name}, ${this.pokemon.weight}`];
       })
       .catch((error) => {
         // eslint-disable-next-line

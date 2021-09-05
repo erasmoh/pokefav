@@ -6,7 +6,7 @@
       :name="actualPokemon"
       @toggle-modal="toggleModal"
     />
-    <div v-if="search != '' && pokeFiltered.length === 0">
+    <div class="noresults" v-if="search != '' && pokeFiltered.length === 0">
       <h1>Uh-oh!</h1>
       <p>You look lost on your journey!</p>
       <button class="button" @click="clearSearch">Go Back Home</button>

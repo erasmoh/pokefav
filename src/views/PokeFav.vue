@@ -6,10 +6,12 @@
       :name="actualPokemon"
       @toggle-modal="toggleModal"
     />
-    <div v-if="search != '' && pokeFavsFiltered.length === 0">
+    <div class="noresults" v-if="pokeFavsFiltered.length === 0">
       <h1>Uh-oh!</h1>
-      <p>You don't have any fav!</p>
-      <button class="button" @click="this.$router.push('pokelist')">Add some</button>
+      <p>You look lost on your journey!</p>
+      <button class="button" @click="this.$router.push('pokelist')">
+        Go Back Home
+      </button>
     </div>
     <PokeCard
       v-for="pokemon in pokeFavsFiltered"

@@ -7,11 +7,16 @@
   border: 0;
   font-weight: bold;
   font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    margin-right: 15px;
+  }
   &:active {
     background-color: $secondary-red;
   }
   &.disabled {
     background-color: $main-gray;
-    // pointer-events: none;
   }
 }
