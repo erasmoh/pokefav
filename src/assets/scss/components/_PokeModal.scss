@@ -10,13 +10,16 @@
   align-items: center;
   justify-content: center;
   #myInput {
-      text-transform: capitalize;
-      display: none;
+    text-transform: capitalize;
+    display: none;
   }
   &-body {
     background-color: $white;
     border-radius: 5px;
     overflow: hidden;
+    @include mq($from: tablet) {
+      width: 60vw;
+    }
   }
   &-header {
     background-image: url("./assets/imgBg.png");
@@ -35,6 +38,9 @@
       position: absolute;
       top: 15px;
       right: 15px;
+      @include mq($from: tablet) {
+        cursor: pointer;
+      }
     }
     img {
       height: 150px;
@@ -42,6 +48,9 @@
   }
   &-info {
     padding: 20px;
+    @include mq($from: tablet) {
+      padding: 30px;
+    }
     &__item {
       display: flex;
       margin: 5px;

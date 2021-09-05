@@ -28,7 +28,7 @@ h1 {
   background: #ffffff;
   background-image: url("./assets/Search.svg");
   background-repeat: no-repeat;
-  background-position: 5% center;
+  background-position: 15px center;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.04);
   border-radius: 5px;
   border: 0;
@@ -36,6 +36,10 @@ h1 {
   margin: 5% auto;
   color: $dark-gray;
   font-size: 18px;
+  @include mq($from: tablet) {
+    width: 55vw;
+    padding: 15px 15px 15px 60px;
+  }
   &::placeholder {
     color: $main-gray;
   }
@@ -52,6 +56,13 @@ h1 {
   justify-content: space-between;
   padding: 5%;
   margin-top: 10%;
+  @include mq($from: tablet) {
+    width: 80vw;
+    margin: 5vh auto;
+    p {
+      width: 60%;
+    }
+  }
 }
 
 .noresults {

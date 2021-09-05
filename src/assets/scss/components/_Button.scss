@@ -10,6 +10,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  @include mq($from: tablet) {
+    cursor: pointer;
+  }
   img {
     margin-right: 15px;
   }

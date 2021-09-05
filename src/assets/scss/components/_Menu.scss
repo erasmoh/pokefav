@@ -11,5 +11,8 @@
   .button {
     width: 30%;
     margin: 5px;
+    @include mq($from: tablet) {
+      width: 25%;
+    }
   }
 }

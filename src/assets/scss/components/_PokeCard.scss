@@ -11,7 +11,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @include mq($from: tablet) {
+    width: 60vw;
+    cursor: pointer;
+  }
   &-name {
+    display: flex;
+    width: 80%;
     padding: 0 10px;
   }
   &-star {
@@ -23,6 +29,9 @@
     justify-content: center;
     align-items: center;
     display: flex;
+    @include mq($from: tablet) {
+      cursor: pointer;
+    }
     img {
       max-width: 90%;
       height: auto;
