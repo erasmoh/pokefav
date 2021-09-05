@@ -9,6 +9,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  #myInput {
+      text-transform: capitalize;
+      display: none;
+  }
   &-body {
     background-color: $white;
     border-radius: 5px;

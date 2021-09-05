@@ -1,6 +1,12 @@
 <template>
-  <div class="pokemons">
-    <input type="text" placeholder="Search" v-model="search" />
+  <Loader v-if="isLoading" />
+  <div v-else class="pokemons">
+    <input
+      class="searchform"
+      type="text"
+      placeholder="Search"
+      v-model="search"
+    />
     <PokeModal
       v-if="showModal"
       :name="actualPokemon"
@@ -25,12 +31,14 @@ import PokeService from "@/services/PokeService.js";
 import PokeCard from "@/components/PokeCard";
 import Menu from "@/components/Menu";
 import PokeModal from "@/components/PokeModal";
+import Loader from "@/components/Loader";
 export default {
   name: "PokeList",
   components: {
     PokeCard,
     Menu,
     PokeModal,
+    Loader,
   },
   data() {
     return {
@@ -39,12 +47,14 @@ export default {
       actualPokemon: null,
       search: "",
       pokeFavs: this.$store.state.pokeFavs,
+      isLoading: true,
     };
   },
   created() {
     PokeService.getPokemons()
       .then((response) => {
         this.pokemons = response.data.results;
+        this.isLoading = false;
       })
       .catch((error) => {
         // eslint-disable-next-line

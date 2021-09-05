@@ -1,6 +1,6 @@
 <template>
   <div class="pokemons">
-    <input type="text" placeholder="Search" v-model="search" />
+    <input class="searchform" type="text" placeholder="Search" v-model="search" />
     <PokeModal
       v-if="showModal"
       :name="actualPokemon"

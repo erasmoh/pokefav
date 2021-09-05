@@ -8,7 +8,7 @@
           height="200"
         />
       </div>
-      <div class="pokemodal-info">
+      <div class="pokemodal-info" id="pokeinfo">
         <div class="pokemodal-info__item">
           <strong>Name:</strong> {{ pokemon.name }}
         </div>
@@ -26,6 +26,11 @@
             </li>
           </ul>
         </div>
+        <input
+          type="text"
+          :value="`name: ${pokemon.name}, weight: ${pokemon.weight}, height: ${pokemon.height}`"
+          id="myInput"
+        />
         <div class="pokemodal-btns">
           <button class="button" @click="copyInfo">Share to my friends</button>
           <Star :pokemon="pokemon" />
@@ -47,7 +52,7 @@ export default {
     return {
       pokemon: null,
       pokeFavs: this.$store.state.pokeFavs,
-      pokeInfo: {},
+      pokeTypes: [],
     };
   },
   created() {
@@ -65,7 +70,16 @@ export default {
       this.$emit("toggleModal");
     },
     copyInfo() {
-      // copy to clipboard missing functionality
+      /* Get the text field */
+      let copyText = document.getElementById("myInput");
+      // let copyText = document.getElementsByClassName("pokemodal-info");
+
+      /* Select the text field */
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+      /* Copy the text inside the text field */
+      navigator.clipboard.writeText(copyText.value);
     },
   },
 };
