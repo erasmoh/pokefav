@@ -46,7 +46,7 @@ export default {
       showModal: false,
       actualPokemon: null,
       search: "",
-      pokeFavs: this.$store.state.pokeFavs,
+      pokeFavs: [],
       isLoading: true,
     };
   },
@@ -55,6 +55,8 @@ export default {
       .then((response) => {
         this.pokemons = response.data.results;
         this.isLoading = false;
+        // Read the favs
+        this.pokeFavs = this.$store.state.pokeFavs;
       })
       .catch((error) => {
         // eslint-disable-next-line

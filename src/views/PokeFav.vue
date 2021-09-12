@@ -39,13 +39,15 @@ export default {
       showModal: false,
       actualPokemon: null,
       search: "",
-      pokeFavs: this.$store.state.pokeFavs,
+      pokeFavs: [],
     };
   },
   created() {
     PokeService.getPokemons()
       .then((response) => {
         this.pokemons = response.data.results;
+        // Read the favs
+        this.pokeFavs = this.$store.state.pokeFavs;
       })
       .catch((error) => {
         // eslint-disable-next-line
